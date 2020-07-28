@@ -617,6 +617,7 @@ namespace UnityEditor.Formats.Fbx.Exporter
             }
 
             // get absolute filepath to texture
+            var textureSourceRelativePath = textureSourceFullPath.Substring("Assets/".Length);
             textureSourceFullPath = Path.GetFullPath (textureSourceFullPath);
 
             if (Verbose) {
@@ -635,6 +636,7 @@ namespace UnityEditor.Formats.Fbx.Exporter
                 var textureName = GetUniqueTextureName(fbxPropName + "_Texture");
                 var fbxTexture = FbxFileTexture.Create (fbxMaterial, textureName);
                 fbxTexture.SetFileName (textureSourceFullPath);
+                fbxTexture.SetRelativeFileName(textureSourceRelativePath);
                 fbxTexture.SetTextureUse (FbxTexture.ETextureUse.eStandard);
                 fbxTexture.SetMappingType (FbxTexture.EMappingType.eUV);
                 TextureMap.Add (textureSourceFullPath, fbxTexture);
