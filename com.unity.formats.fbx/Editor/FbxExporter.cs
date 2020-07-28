@@ -617,8 +617,8 @@ namespace UnityEditor.Formats.Fbx.Exporter
             }
 
             // get absolute filepath to texture
-            var textureSourceRelativePath = textureSourceFullPath.Substring("Assets/".Length);
             textureSourceFullPath = Path.GetFullPath (textureSourceFullPath);
+            var textureSourceRelativePath = ExportSettings.GetRelativePath(m_lastFilePath, textureSourceFullPath);
 
             if (Verbose) {
                 Debug.Log (string.Format ("{2}.{1} setting texture path {0}", textureSourceFullPath, fbxPropName, fbxMaterial.GetName ()));
